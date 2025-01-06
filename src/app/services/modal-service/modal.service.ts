@@ -12,7 +12,7 @@ export class ModalService {
       data: data,
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('Do something with the result!' + result);
+      console.log('Do something with the result!');
     });
   }
 

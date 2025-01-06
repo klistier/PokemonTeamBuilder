@@ -1,0 +1,12 @@
+<div class="p-4">
+  <p>Name: {{ pokemon.name }}</p>
+  <p>Weight: {{ pokemon.weight }} lbs</p>
+  <div>
+    <div>
+      <p>Abilities:</p>
+      @for (ability of pokemon.abilities; track $index) {
+      <p>{{ ability.ability.name }}</p>
+      }
+    </div>
+  </div>
+</div>

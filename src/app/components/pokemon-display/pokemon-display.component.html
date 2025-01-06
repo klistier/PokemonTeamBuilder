@@ -1,0 +1,17 @@
+<div class="flex flex-wrap">
+  @for (pokemon of pokemons(); track $index) {
+  <div class="p-4">
+    <h4 class="text-center">{{ pokemon.name }}</h4>
+    <img [src]="getPokemonImageUrl(pokemon.url)" (click)="openInfo(pokemon)" />
+    <div class="flex justify-center">
+      <button mat-fab (click)="addToTeam(pokemon)">
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </div>
+  </div>
+  }
+</div>
+<div class="text-center">
+  <button class="p-3">Previous</button>
+  <button class="p-3">Next</button>
+</div>

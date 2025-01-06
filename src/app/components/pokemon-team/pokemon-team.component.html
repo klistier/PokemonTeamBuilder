@@ -1,0 +1,13 @@
+<div class="flex justify-center">
+  @for (pokemon of team(); track $index) {
+  <div>
+    <h4 class="text-center">{{ pokemon.name }}</h4>
+    <img [src]="getPokemonImageUrl(pokemon.url)" />
+    <div class="flex justify-center">
+      <button mat-fab (click)="removePokemonFromTeam(pokemon)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  }
+</div>

@@ -1,5 +1,7 @@
+import { IAbility } from "./IAbility";
+
 export interface IPokemonDetails {
-  abilities: string[];
+  abilities: IAbility[];
   height: number;
   id: number;
   moves: string[];
