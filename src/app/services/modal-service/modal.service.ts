@@ -11,9 +11,7 @@ export class ModalService {
     const dialogRef = this.#dialog.open(component, {
       data: data,
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('Do something with the result!');
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   public close = () => this.#dialog.closeAll();

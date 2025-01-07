@@ -33,4 +33,5 @@ export class PokemonService {
     const id = url.match(/\/pokemon\/(\d+)\//)?.[1];
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
   }
+
 }

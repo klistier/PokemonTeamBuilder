@@ -7,6 +7,7 @@ import {
   selectAllPokemons,
   selectNextUrl,
   selectPreviousUrl,
+  selectTeam,
 } from '../../state/selectors';
 import { addPokemonToTeam, loadPokemons } from '../../state/actions';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +27,7 @@ export class PokemonDisplayComponent implements OnInit {
   readonly #modalService = inject(ModalService);
 
   pokemons = signal<Pokemon[]>([]);
+  team = signal<Pokemon[]>([]);
   nextUrl = signal<string | null>('');
   previousUrl = signal<string | null>('');
 
@@ -34,9 +36,11 @@ export class PokemonDisplayComponent implements OnInit {
     this.#store.pipe(select(selectAllPokemons)).subscribe((pokemons) => {
       this.pokemons.set(pokemons);
     });
+    this.#store.select(selectTeam).subscribe((team) => {
+      this.team.set(team);
+    });
     this.#store.pipe(select(selectNextUrl)).subscribe((next) => {
       this.nextUrl.set(next);
-      console.log('Next URL: ' + next);
     });
     this.#store.pipe(select(selectPreviousUrl)).subscribe((previous) => {
       this.previousUrl.set(previous);
@@ -48,7 +52,10 @@ export class PokemonDisplayComponent implements OnInit {
   }
 
   addToTeam(pokemon: Pokemon): void {
-    this.#store.dispatch(addPokemonToTeam({ pokemon }));
+    const isDuplicate = this.team().find((p) => p.name == pokemon.name);
+    if (!isDuplicate) {
+      this.#store.dispatch(addPokemonToTeam({ pokemon }));
+    }
   }
 
   openInfo(pokemon: Pokemon): void {
@@ -56,13 +63,11 @@ export class PokemonDisplayComponent implements OnInit {
       .displayPokemonDetails(pokemon.url)
       .subscribe((details) => {
         this.#modalService.open(PokemonDetailsComponent, { details });
-        console.log(JSON.stringify(details) + ' was clicked!');
       });
   }
 
   loadNext(): void {
     const nextUrlValue = this.nextUrl();
-    console.log('Loading next page: ' + nextUrlValue);
 
     if (nextUrlValue) {
       this.#store.dispatch(loadPokemons({ url: nextUrlValue }));
