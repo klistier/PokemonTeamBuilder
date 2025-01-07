@@ -1,5 +1,8 @@
+<h1 class="text-center font-bold text-3xl p-3">Current Team</h1>
 <div class="flex justify-center p-4">
-  @for (pokemon of team(); track $index) {
+  @if (team().length < 1) {
+  <p>No pokemon in your team yet. Go ahead and add one!</p>
+  } @for (pokemon of team(); track $index) {
   <div>
     <h4 class="text-center">{{ pokemon.name }}</h4>
     <img [src]="getPokemonImageUrl(pokemon.url)" />

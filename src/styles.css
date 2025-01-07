@@ -3,3 +3,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Pokemon Hollow";
+  src: url("app/assets/fonts/Pokemon-Hollow.ttf");
+}
+
+@font-face {
+  font-family: "Pokemon Solid";
+  src: url("app/assets/fonts/Pokemon-Solid.ttf");
+}
+
+h1 {
+  font-family: "Pokemon Hollow", sans-serif;
+}
+
+h2 {
+  font-family: "Pokemon Solid", sans-serif;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}

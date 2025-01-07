@@ -1,12 +1,18 @@
 <div class="p-4">
-  <p>Name: {{ pokemon.name }}</p>
-  <p>Weight: {{ pokemon.weight }} lbs</p>
-  <div>
-    <div>
-      <p>Abilities:</p>
+  <div class="flex justify-end">
+    <button (click)="close()">X</button>
+  </div>
+  <h1 class="text-center font-bold text-4xl p-2">{{ pokemon.name }}</h1>
+  <div class="p-4 flex flex-column justify-center">
+    <mat-dialog-content>
+      <span class="font-bold">Weight:</span>
+      <span>{{ pokemon.weight }} lbs</span>
+      <ul class="font-bold">
+        Abilities
+      </ul>
       @for (ability of pokemon.abilities; track $index) {
-      <p>{{ ability.ability.name }}</p>
+      <li>{{ ability.ability.name }}</li>
       }
-    </div>
+    </mat-dialog-content>
   </div>
 </div>

@@ -1,7 +1,8 @@
+<h1 class="text-center font-bold text-4xl p-5">Pokemon Team Builder</h1>
 <div class="flex flex-wrap">
   @for (pokemon of pokemons(); track $index) {
   <div class="p-4">
-    <h4 class="text-center">{{ pokemon.name }}</h4>
+    <p class="text-center">{{ pokemon.name }}</p>
     <img [src]="getPokemonImageUrl(pokemon.url)" (click)="openInfo(pokemon)" />
     <div class="flex justify-center">
       <button mat-fab (click)="addToTeam(pokemon)">
@@ -11,7 +12,9 @@
   </div>
   }
 </div>
-<div class="text-center">
-  <button class="p-3" (click)="loadPrevious()">Previous</button>
-  <button class="p-3" (click)="loadNext()">Next</button>
+<div class="flex justify-center space-x-4 p-5">
+  <button mat-raised-button class="w-1/6 p-2" (click)="loadPrevious()">
+    Previous
+  </button>
+  <button mat-raised-button class="w-1/6 p-2" (click)="loadNext()">Next</button>
 </div>
