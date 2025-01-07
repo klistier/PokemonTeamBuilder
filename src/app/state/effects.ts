@@ -16,10 +16,14 @@ export class PokemonEffects {
   loadPokemons$ = createEffect(() =>
     this.#actions$.pipe(
       ofType(loadPokemons),
-      mergeMap(() =>
-        this.#pokemonService.displayPokemons().pipe(
+      mergeMap(({ url }) =>
+        this.#pokemonService.displayPokemons(url).pipe(
           map((response) =>
-            loadPokemonsSuccess({ pokemons: response.results })
+            loadPokemonsSuccess({
+              pokemons: response.results,
+              next: response.next,
+              previous: response.previous,
+            })
           ),
           catchError((error) => of(loadPokemonsFailure({ error })))
         )

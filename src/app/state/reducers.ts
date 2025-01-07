@@ -10,18 +10,22 @@ import {
 export interface PokemonState {
   pokemons: Pokemon[];
   team: Pokemon[];
+  previous: string | null;
+  next: string | null;
   error: null;
 }
 
 export const initialState: PokemonState = {
   pokemons: [],
   team: [],
+  previous: null,
+  next: null,
   error: null,
 };
 
 export const pokemonReducer = createReducer(
   initialState,
-  on(loadPokemonsSuccess, (state, { pokemons }) => ({ ...state, pokemons })),
+  on(loadPokemonsSuccess, (state, { pokemons, next, previous }) => ({ ...state, pokemons, next, previous })),
 
   on(addPokemonToTeam, (state, { pokemon }) => ({
     ...state,

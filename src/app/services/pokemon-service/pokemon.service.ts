@@ -12,14 +12,21 @@ export class PokemonService {
   #http = inject(HttpClient);
   #url = 'https://pokeapi.co/api/v2';
 
-  displayPokemons(): Observable<IPokemonResults> {
-    return this.#http.get<IPokemonResults>(
-      `${this.#url}/pokemon/?limit=20&offset=20`
-    );
+  displayPokemons(url?: string): Observable<IPokemonResults> {
+    const apiUrl = url || `${this.#url}/pokemon/?limit=20&offset=20`;
+    return this.#http.get<IPokemonResults>(apiUrl);
   }
 
   displayPokemonDetails(url: string): Observable<IPokemonDetails> {
     return this.#http.get<IPokemonDetails>(url);
+  }
+
+  displayPreviousPokemons(url: string): Observable<IPokemonResults> {
+    return this.#http.get<IPokemonResults>(url);
+  }
+
+  displayNextPokemons(url: string): Observable<IPokemonResults> {
+    return this.#http.get<IPokemonResults>(url);
   }
 
   getPokemonImageUrl(url: string): string {
